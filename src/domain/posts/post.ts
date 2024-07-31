@@ -52,10 +52,12 @@ export type PostCoverFormat = {
   };
 };
 
-export type PostCover = PostCoverFormat & {
-  id: PostID;
+export type PostCoverDataAttributes = PostCoverFormat & {
+  name: string;
   alternativeText: string;
   caption: string;
+  width: number;
+  height: number;
   previewUrl: null;
   provider: string;
   created_by: number;
@@ -68,6 +70,15 @@ export type PostCover = PostCoverFormat & {
     medium: PostCoverFormat;
     large: PostCoverFormat;
   };
+};
+
+export type PostCoverData = {
+  id: number;
+  attributes: PostCoverDataAttributes;
+};
+
+export type PostCover = {
+  data: PostCoverData;
 };
 
 export type PostChildren = {
