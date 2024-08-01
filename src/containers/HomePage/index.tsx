@@ -22,11 +22,6 @@ export default function HomePage({ posts }: HomePageProps) {
                 slug={post.attributes.slug}
                 title={post.attributes.title}
               />
-              <h2 key={post.attributes.slug}>
-                {post.attributes.content.map((content) =>
-                  content.children.map((children) => children.text),
-                )}
-              </h2>
             </>
           ))}
         </Container>

@@ -99,7 +99,7 @@ export type PostAttributesData = {
   category: PostCategory;
   created_by: PostCreatedBy;
   updated_by: PostCreatedBy;
-  created_at: string;
+  createdAt: string;
   updated_at: string;
   cover: PostCover;
 };

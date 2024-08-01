@@ -1,3 +1,4 @@
+import Post from '@/containers/Post';
 import { getAllPosts } from '@/data/posts/get-all-posts';
 import { getPost } from '@/data/posts/get-post';
 import { PostData } from '@/domain/posts/post';
@@ -8,26 +9,7 @@ export type DynamicPostProps = {
 };
 
 export default function DynamicPost({ post }: DynamicPostProps) {
-  return (
-    <>
-      <p>{post.attributes.title}</p>
-      {post.attributes.content.map((item, index) => {
-        if (item.type === 'paragraph') {
-          return (
-            <p key={index}>
-              {item.children.map((child) => {
-                if (child.type === 'text') {
-                  return child.text;
-                }
-                return null;
-              })}
-            </p>
-          );
-        }
-        return null;
-      })}
-    </>
-  );
+  return <Post post={post}></Post>;
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
