@@ -3,12 +3,24 @@ import { getAllPosts } from '@/data/posts/get-all-posts';
 import { getPost } from '@/data/posts/get-post';
 import { PostData } from '@/domain/posts/post';
 import { GetStaticPaths, GetStaticProps } from 'next';
+import Error from 'next/error';
+import { useRouter } from 'next/router';
 
 export type DynamicPostProps = {
   post: PostData;
 };
 
 export default function DynamicPost({ post }: DynamicPostProps) {
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return <div>Page loading...</div>;
+  }
+
+  if (!post) {
+    return <Error statusCode={404}></Error>;
+  }
+
   return <Post post={post}></Post>;
 }
 
@@ -23,7 +35,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
         },
       };
     }),
-    fallback: false,
+    fallback: true,
   };
 };
 
@@ -40,5 +52,6 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 
   return {
     props: { posts: [] },
+    revalidate: 5,
   };
 };
