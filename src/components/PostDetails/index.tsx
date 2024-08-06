@@ -16,7 +16,7 @@ export default function PostDetails({
   return (
     <Container>
       Published on <Date date={date}></Date> by {author} | {''}
-      <Link href={`/categories/${category}`}>{category}</Link>
+      <Link href={`/post/page/1/${category}`}>{category}</Link>
     </Container>
   );
 }
